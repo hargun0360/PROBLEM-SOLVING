@@ -1,0 +1,43 @@
+struct matrix {
+    int mat[2][2];
+};
+
+matrix mul(matrix A,matrix B){
+    matrix C;
+    for(int row=0;row<2;row++){
+        for(int column=0;column<2;column++){
+            int sum=0;
+            for(int k=0;k<2;k++){
+                sum+=A.mat[row][k] * B.mat[k][column];
+            }
+            C.mat[row][column]= sum;
+        }
+    }
+    return C;
+}
+
+matrix identity(){
+    matrix A;
+    A.mat[0][0] = 1;
+    A.mat[0][1] = 0;
+    A.mat[1][0] = 0;
+    A.mat[1][1] = 1;
+    return A; 
+}
+
+// Binary exponentiation of a matrix 
+
+// Finding Power of matrix
+
+matrix power(matrix A, int n){
+    if(n==0){
+        reurn identity();
+    }
+    matrix X = power(A,n/2);
+    if(n%2==0){
+        return mul(X,X);
+    }
+    else{
+        return mul(mul(X,X),A);
+    }
+}
