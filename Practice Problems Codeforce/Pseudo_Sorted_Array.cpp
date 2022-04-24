@@ -9,11 +9,7 @@
 // ਗੁਰੁ ਡਿਠਾ ਤਾਂ ਮਨੁ ਸਾਧਾਰਿਆ ॥ 
 // ਧੰਨੁ ਧੰਨੁ ਰਾਮਦਾਸ ਗੁਰੁ ਜਿਨਿ ਸਿਰਿਆ ਤਿਨੈ ਸਵਾਰਿਆ ॥ 
 // ਧੰਨੁ ਧੰਨੁ ਰਾਮਦਾਸ ਗੁਰੁ ਜਿਨਿ ਸਿਰਿਆ ਤਿਨੈ ਸਵਾਰਿਆ ॥ 
- 
- 
-#pragma GCC optimize("Ofast")
-#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,avx2,fma")
-#pragma GCC optimize("unroll-loops")
+
 #include <bits/stdc++.h>  
 #define ll long long int
 #define mpp make_pair
@@ -22,19 +18,34 @@
 ll MOD = 998244353;
 double eps = 1e-12;
 using namespace std;
-int a[5][5];
+ 
 int main(){
     fast_speed;
-    for(int i=1;i<=3;i++){
-        for(int j=1;j<=3;j++){
-            cin>>a[i][j];
+    ll t; cin>>t;
+    while(t--){
+        ll n; cin>>n;
+        vector <int> v;
+        for(int i=0;i<n;i++){
+            ll x; cin>>x;
+            v.push_back(x);
         }
-    }
-    for(int i=1;i<=3;i++){
-        for(int j=1;j<=3;j++){
-            cout<<1-(a[i][j]+a[i-1][j]+a[i+1][j]+a[i][j+1]+a[i][j-1])%2;   
+        vector <int> v1(v);
+        sort(v1.begin(),v1.end());
+        ll count=0,sum=0;
+        for(int i=0;i<n;i++){
+            if(i+1<n && v[i]>v[i+1]){
+                count++;
+                swap(v[i],v[i+1]);
+            }
         }
-        cout<<endl;
+        for(int j=0;j<n;j++){
+            if(v1[j]==v[j]){
+                sum++;
+            }
+        }
+        if(count>1 || (sum<v.size())){ 
+            cout<<"NO\n";
+        }else cout<<"YES\n";
     }
     return 0;
 }

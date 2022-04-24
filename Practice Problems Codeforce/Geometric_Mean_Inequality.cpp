@@ -22,19 +22,26 @@
 ll MOD = 998244353;
 double eps = 1e-12;
 using namespace std;
-int a[5][5];
+ 
 int main(){
     fast_speed;
-    for(int i=1;i<=3;i++){
-        for(int j=1;j<=3;j++){
-            cin>>a[i][j];
+    ll t; cin>>t;
+    while(t--){
+        ll n; cin>>n;
+        ll a=0,b=0;
+        for(int i=1;i<=n;i++){
+            ll x; cin>>x;
+            if(x==1) a++;
+            else b++;
         }
-    }
-    for(int i=1;i<=3;i++){
-        for(int j=1;j<=3;j++){
-            cout<<1-(a[i][j]+a[i-1][j]+a[i+1][j]+a[i][j+1]+a[i][j-1])%2;   
-        }
-        cout<<endl;
+        ll s= abs(a-b);
+        if(s==0 || s==1)
+        cout<<"Yes"<<endl;
+        else if(s==2){
+            if(a%2==0 and b%2==0)
+            cout<<"Yes"<<endl;
+            else cout<<"No"<<endl;
+        }else cout<<"No"<<endl;
     }
     return 0;
 }

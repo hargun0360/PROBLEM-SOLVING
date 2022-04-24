@@ -2,7 +2,7 @@
 // ਪੂਰੀ ਹੋਈ ਕਰਾਮਾਤਿ ਆਪਿ ਸਿਰਜਣਹਾਰੈ ਧਾਰਿਆ ॥ 
 // ਸਿਖੀ ਅਤੈ ਸੰਗਤੀ ਪਾਰਬ੍ਰਹਮੁ ਕਰਿ ਨਮਸਕਾਰਿਆ ॥ 
 // ਅਟਲੁ ਅਥਾਹੁ ਅਤੋਲੁ ਤੂ ਤੇਰਾ ਅੰਤੁ ਨ ਪਾਰਾਵਾਰਿਆ ॥ 
-// ਜਿਨੀ ਤੂੰ ਸੇਵਿਆ ਭਾਉ ਕਰਿ ਸੇ ਤੁਧੁ ਪਾਰਿ ਉਤਾਰਿਆ ॥ 
+// ਜਿਨ੍‍ੀ ਤੂੰ ਸੇਵਿਆ ਭਾਉ ਕਰਿ ਸੇ ਤੁਧੁ ਪਾਰਿ ਉਤਾਰਿਆ ॥ 
 // ਲਬੁ ਲੋਭੁ ਕਾਮੁ ਕ੍ਰੋਧੁ ਮੋਹੁ ਮਾਰਿ ਕਢੇ ਤੁਧੁ ਸਪਰਵਾਰਿਆ ॥ 
 // ਧੰਨੁ ਸੁ ਤੇਰਾ ਥਾਨੁ ਹੈ ਸਚੁ ਤੇਰਾ ਪੈਸਕਾਰਿਆ ॥ 
 // ਨਾਨਕੁ ਤੂ ਲਹਣਾ ਤੂਹੈ ਗੁਰੁ ਅਮਰੁ ਤੂ ਵੀਚਾਰਿਆ ॥ 
@@ -22,19 +22,36 @@
 ll MOD = 998244353;
 double eps = 1e-12;
 using namespace std;
-int a[5][5];
+ 
 int main(){
     fast_speed;
-    for(int i=1;i<=3;i++){
-        for(int j=1;j<=3;j++){
-            cin>>a[i][j];
+    ll t; cin>>t;
+    while(t--){
+        ll n,x,k; cin>>n>>x>>k;
+        vector <ll> v1,v2;
+        for(ll i=0;i<n;i++){
+            ll x; cin>>x;
+            v1.push_back(x);
         }
-    }
-    for(int i=1;i<=3;i++){
-        for(int j=1;j<=3;j++){
-            cout<<1-(a[i][j]+a[i-1][j]+a[i+1][j]+a[i][j+1]+a[i][j-1])%2;   
+        for(ll i=0;i<n;i++){
+            ll x; cin>>x;
+            v2.push_back(x);
         }
-        cout<<endl;
+        ll ans=0,f=0;
+        for(ll i=0;i<n;i++){
+            if(abs(v2[i]-v1[i])<=k){
+                ans++;
+            }
+            if(ans==x){
+                f=1;
+                break;
+            }
+        }
+        if(f==1){
+            cout<<"YES\n";
+        }else{
+            cout<<"NO\n";
+        }
     }
     return 0;
 }

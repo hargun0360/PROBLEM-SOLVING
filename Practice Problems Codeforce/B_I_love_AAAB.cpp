@@ -22,19 +22,32 @@
 ll MOD = 998244353;
 double eps = 1e-12;
 using namespace std;
-int a[5][5];
+ 
 int main(){
     fast_speed;
-    for(int i=1;i<=3;i++){
-        for(int j=1;j<=3;j++){
-            cin>>a[i][j];
+    ll t; cin>>t;
+    while(t--){
+        string s; cin>>s;
+        ll f=0;
+        if(s[s.length()-1]!='B' || s[0]=='B'){
+            cout<<"NO"<<endl;
+        }else{
+            ll a=0,b=0;
+            for(int i=0;i<s.length();i++){
+                 if(s[i]=='A'){
+                     a++;
+                 }else b++;
+                 if(a<b){
+                    f=1;
+                    cout<<"NO\n";
+                    break;
+                }
+            }
+            if(f==0){
+                cout<<"YES\n";
+            }
+            
         }
-    }
-    for(int i=1;i<=3;i++){
-        for(int j=1;j<=3;j++){
-            cout<<1-(a[i][j]+a[i-1][j]+a[i+1][j]+a[i][j+1]+a[i][j-1])%2;   
-        }
-        cout<<endl;
     }
     return 0;
 }

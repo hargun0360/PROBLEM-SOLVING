@@ -22,19 +22,40 @@
 ll MOD = 998244353;
 double eps = 1e-12;
 using namespace std;
-int a[5][5];
+ 
 int main(){
     fast_speed;
-    for(int i=1;i<=3;i++){
-        for(int j=1;j<=3;j++){
-            cin>>a[i][j];
+    ll t; cin>>t;
+    while(t--){
+        ll x,y; cin>>x>>y;
+        ll ss=x+y;
+        ll s=min(x,y);
+        ll m=max(x,y);
+        ll r= (s-1)*2;
+        ll q=(m-s)*2;
+        if(x==1 ||y==1){
+            if(x==1 and y!=1){
+                if(y-1>1){
+                    cout<<-1<<endl;
+                }else{
+                    cout<<1<<endl;
+                }
+            }else if(y==1 and x!=1){
+                if(x-1>1){
+                    cout<<-1<<endl;
+                }else{
+                    cout<<1<<endl;
+                }
+            }else{
+                cout<<0<<endl;
+            }
+        }else{
+            if((x%2==0 and y%2!=0) || (x%2!=0 and y%2==0)){
+            cout<<r+q-1<<endl;
+             }else if((x%2==0 and y%2==0) || (x%2!=0 and y%2!=0)){
+                cout<<r+q<<endl;
+             } 
         }
-    }
-    for(int i=1;i<=3;i++){
-        for(int j=1;j<=3;j++){
-            cout<<1-(a[i][j]+a[i-1][j]+a[i+1][j]+a[i][j+1]+a[i][j-1])%2;   
-        }
-        cout<<endl;
     }
     return 0;
 }

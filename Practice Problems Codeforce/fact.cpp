@@ -22,19 +22,18 @@
 ll MOD = 998244353;
 double eps = 1e-12;
 using namespace std;
-int a[5][5];
+const int N = 1e5+10;
+long long int fact[N+10];
 int main(){
-    fast_speed;
-    for(int i=1;i<=3;i++){
-        for(int j=1;j<=3;j++){
-            cin>>a[i][j];
-        }
+    fact[0]=fact[1]=1;
+    for(int i=2;i<N;i++){
+        fact[i] = fact[i-1] * i;
     }
-    for(int i=1;i<=3;i++){
-        for(int j=1;j<=3;j++){
-            cout<<1-(a[i][j]+a[i-1][j]+a[i+1][j]+a[i][j+1]+a[i][j-1])%2;   
-        }
-        cout<<endl;
+    fast_speed;
+    ll t; cin>>t;
+    while(t--){
+        ll n; cin>>n;
+        cout<<fact[n]<<endl;
     }
     return 0;
 }

@@ -22,19 +22,50 @@
 ll MOD = 998244353;
 double eps = 1e-12;
 using namespace std;
-int a[5][5];
+bool comp(pair<int,int> el1, pair<int,int> el2){
+    if(el1.second<el2.second){
+        return true;
+    }
+    else if(el1.second == el2.second) {
+		if(el1.first > el2.first) {
+			return true; 
+		}else return false;
+	}
+    else return false;
+}
 int main(){
     fast_speed;
-    for(int i=1;i<=3;i++){
-        for(int j=1;j<=3;j++){
-            cin>>a[i][j];
+    ll t; cin>>t;
+    while(t--){
+        ll n; cin>>n;
+        bool arr[11]={false};
+        bool f=false;
+        vector <pair<int,int>> v;
+        for(int i=0;i<n;i++){
+            ll x,y; cin>>x>>y;
+            arr[y]=true;
+            v.pb({x,y});
         }
-    }
-    for(int i=1;i<=3;i++){
-        for(int j=1;j<=3;j++){
-            cout<<1-(a[i][j]+a[i-1][j]+a[i+1][j]+a[i][j+1]+a[i][j-1])%2;   
+        for(int i=1;i<11;i++){
+            if(arr[i]==false){
+                f=true;
+                break;
+            }
         }
-        cout<<endl;
+        if(v.size()<10 || f){
+            cout<<"MOREPROBLEMS\n";
+        }else{
+            ll sum=0,k=1;
+            sort(v.begin(),v.end(),comp);
+            for(int i=0;v.size();i++){
+                if(v[i].second==k){
+                    sum+=v[i].first;
+                    k++;
+                }
+                if(k==11) break;
+            }
+            cout<<sum<<endl;
+        }
     }
     return 0;
 }

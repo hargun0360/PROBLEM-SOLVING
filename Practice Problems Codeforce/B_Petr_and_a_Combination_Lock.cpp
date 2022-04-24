@@ -22,19 +22,32 @@
 ll MOD = 998244353;
 double eps = 1e-12;
 using namespace std;
-int a[5][5];
+ 
 int main(){
     fast_speed;
-    for(int i=1;i<=3;i++){
-        for(int j=1;j<=3;j++){
-            cin>>a[i][j];
+    ll n; cin>>n; 
+    vector <ll> v;
+    for(int i=1;i<=n;i++){
+        ll x; cin>>x;
+        v.pb(x);
+    }
+    ll flag=0;
+    for(ll num=0;num<(num<<n)-1;num++){
+        ll sum = 0;
+        for(ll bits=0;bits<n-1;bits++){
+            if(num&(1<<bits)){
+                sum+=v[bits];
+            }else{
+                sum-=v[bits];
+            }
+            if(sum%360==0){
+                flag=1;
+                break;
+            }
         }
     }
-    for(int i=1;i<=3;i++){
-        for(int j=1;j<=3;j++){
-            cout<<1-(a[i][j]+a[i-1][j]+a[i+1][j]+a[i][j+1]+a[i][j-1])%2;   
-        }
-        cout<<endl;
-    }
+    if(flag==1){
+        cout<<"YES";
+    }else cout<<"NO";
     return 0;
 }

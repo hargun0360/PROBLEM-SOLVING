@@ -22,19 +22,44 @@
 ll MOD = 998244353;
 double eps = 1e-12;
 using namespace std;
-int a[5][5];
+ 
 int main(){
     fast_speed;
-    for(int i=1;i<=3;i++){
-        for(int j=1;j<=3;j++){
-            cin>>a[i][j];
+    ll t; cin>>t;
+    while(t--){
+        string s; cin>>s;
+        deque<char> dq;
+        char maxi='a';
+        bool flag=false;
+        set <char> st;
+        for(int i=0;i<s.length();i++){
+            dq.push_back(s[i]);
+            maxi=max(maxi,s[i]);
+            st.insert(s[i]);
         }
-    }
-    for(int i=1;i<=3;i++){
-        for(int j=1;j<=3;j++){
-            cout<<1-(a[i][j]+a[i-1][j]+a[i+1][j]+a[i][j+1]+a[i][j-1])%2;   
+        if(st.size()<s.length()){
+            cout<<"NO"<<endl;
+        }else{
+            for(char ch=maxi;ch>='a';ch--){
+            if(dq.size()==0){
+                cout<<"NO"<<endl;
+                flag=true;
+                break;
+            }
+            if(dq.front()==ch)
+            dq.pop_front();
+            else if(dq.back()==ch)
+            dq.pop_back();
+            else{
+                cout<<"NO"<<endl;
+                 flag=true;
+                break;
+            }
         }
-        cout<<endl;
+        if(flag==false and dq.size()==0)
+        cout<<"YES"<<endl;
+        
     }
+  }
     return 0;
 }

@@ -22,19 +22,21 @@
 ll MOD = 998244353;
 double eps = 1e-12;
 using namespace std;
-int a[5][5];
+ 
 int main(){
     fast_speed;
-    for(int i=1;i<=3;i++){
-        for(int j=1;j<=3;j++){
-            cin>>a[i][j];
-        }
+    vector <ll> v;
+    for(ll i=1;i<=4;i++){
+        ll x; cin>>x;
+        v.push_back(x);
     }
-    for(int i=1;i<=3;i++){
-        for(int j=1;j<=3;j++){
-            cout<<1-(a[i][j]+a[i-1][j]+a[i+1][j]+a[i][j+1]+a[i][j-1])%2;   
-        }
-        cout<<endl;
-    }
+    sort(v.begin(),v.end());
+    ll sum = v[3];
+    ll f=(v[0]+v[1])-sum;
+    ll x=(v[1]+v[2])-sum;
+    cout<<f<<" ";
+    cout<<x<<" ";
+    cout<<sum-f-x<<" ";
+
     return 0;
 }

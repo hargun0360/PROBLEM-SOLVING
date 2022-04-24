@@ -22,19 +22,34 @@
 ll MOD = 998244353;
 double eps = 1e-12;
 using namespace std;
-int a[5][5];
+ 
 int main(){
     fast_speed;
-    for(int i=1;i<=3;i++){
-        for(int j=1;j<=3;j++){
-            cin>>a[i][j];
+    ll t; cin>>t;
+    while(t--){
+        ll s1=0,s2=0;
+        ll n; cin>>n;
+        vector <ll> v1,v2;
+        for(int i=0;i<n;i++){
+            ll x; cin>>x; 
+            v1.pb(x);
         }
-    }
-    for(int i=1;i<=3;i++){
-        for(int j=1;j<=3;j++){
-            cout<<1-(a[i][j]+a[i-1][j]+a[i+1][j]+a[i][j+1]+a[i][j-1])%2;   
+        for(int i=0;i<n;i++){
+            ll x; cin>>x; 
+            v2.pb(x);
         }
-        cout<<endl;
+        for(int i=0;i<n;i++){
+            if(v1[i]<v2[i]){
+                swap(v1[i],v2[i]);
+            }
+        }
+        for(int i=0;i<n;i++){
+            if(i+1<n){
+                 s1+=abs(v1[i+1]-v1[i]);
+                 s2+=abs(v2[i+1]-v2[i]);
+            }
+        }
+         cout<<s1+s2<<endl;
     }
     return 0;
 }

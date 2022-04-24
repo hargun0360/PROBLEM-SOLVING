@@ -22,19 +22,30 @@
 ll MOD = 998244353;
 double eps = 1e-12;
 using namespace std;
-int a[5][5];
+ 
 int main(){
     fast_speed;
-    for(int i=1;i<=3;i++){
-        for(int j=1;j<=3;j++){
-            cin>>a[i][j];
+    ll t; cin>>t;
+    while(t--){
+        ll n; cin>>n; 
+        vector <ll> v;
+        ll ma=-1,mi=INT_MAX;
+        ll maxi=0,mini=0;
+        for(int i=0;i<n;i++){
+            ll x; cin>>x; v.pb(x);
+            if(x>ma){
+                ma=x;
+                maxi=i;
+            }
+            if(mi>x){
+                mi=x;
+                mini=i;
+            }
         }
-    }
-    for(int i=1;i<=3;i++){
-        for(int j=1;j<=3;j++){
-            cout<<1-(a[i][j]+a[i-1][j]+a[i+1][j]+a[i][j+1]+a[i][j-1])%2;   
-        }
-        cout<<endl;
+        ll step1 = max(maxi+1,mini+1); //1,2,3,4,5 index
+        ll step2 = max(n-maxi,n-mini);
+        ll step3 = min(maxi,mini) + min(n-maxi+1,n-mini+1);
+        cout<<min(min(step1,step2),step3)<<endl;
     }
     return 0;
 }

@@ -22,19 +22,30 @@
 ll MOD = 998244353;
 double eps = 1e-12;
 using namespace std;
-int a[5][5];
+ 
 int main(){
     fast_speed;
-    for(int i=1;i<=3;i++){
-        for(int j=1;j<=3;j++){
-            cin>>a[i][j];
+    ll t; cin>>t;
+    while(t--){
+        string s; cin>>s;
+        map <char,int> mp;
+        for(int i=0;i<s.length();i++){
+            if(mp[s[i]]==2){
+                continue;
+            }
+            mp[s[i]]++;
         }
-    }
-    for(int i=1;i<=3;i++){
-        for(int j=1;j<=3;j++){
-            cout<<1-(a[i][j]+a[i-1][j]+a[i+1][j]+a[i][j+1]+a[i][j-1])%2;   
+        ll sum=0;
+        ll red=0;
+        for(auto it : mp){
+            sum+=it.second;
         }
-        cout<<endl;
+        if(sum&1){
+            red=(sum-1)/2;
+        }else{
+            red=sum/2;
+        }
+        cout<<red<<endl;
     }
     return 0;
 }
